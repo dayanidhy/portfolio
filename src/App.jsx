@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from './components/NavBar';
+import NavBar from './Components/NavBar';
 import Hero from './Components/Hero';
 import BentoGrid from './Components/BentoGrid';
 import Footer from './Components/Footer';
