@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 
 export default function Contact() {
-  const [result, setResult] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const onSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-    setResult("Sending....");
     
     const formData = new FormData(event.target);
     // Your actual Web3Forms Access Key
@@ -22,14 +21,14 @@ export default function Contact() {
         const data = await response.json();
 
         if (data.success) {
-            setResult("Message Sent Successfully!");
+            // Show the Popup
+            setShowSuccessModal(true);
             event.target.reset(); // Clear the form
         } else {
-            console.log("Error", data);
-            setResult(data.message);
+            alert("Error sending message: " + data.message);
         }
     } catch (error) {
-        setResult("Something went wrong. Please try again.");
+        alert("Something went wrong. Please try again.");
     }
     
     setIsSubmitting(false);
@@ -38,6 +37,40 @@ export default function Contact() {
   return (
     <section className="py-20 px-6 bg-[#0a0a0a] relative overflow-hidden" id="contact">
       
+      {/* 1. THE SUCCESS MODAL (Hidden by default) */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
+            {/* Backdrop (Dark overlay) */}
+            <div 
+                className="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity"
+                onClick={() => setShowSuccessModal(false)}
+            ></div>
+
+            {/* The Popup Box */}
+            <div className="bg-[#0a0a0a] border border-white/10 p-8 rounded-3xl relative z-10 max-w-sm w-full text-center shadow-2xl transform transition-all scale-100">
+                {/* Green Check Icon */}
+                <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                
+                <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
+                <p className="text-zinc-400 mb-8">
+                    Thank you for reaching out. I have received your message and will reply to you shortly.
+                </p>
+
+                <button 
+                    onClick={() => setShowSuccessModal(false)}
+                    className="w-full bg-white text-black font-bold py-3 rounded-xl hover:bg-zinc-200 transition-colors"
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+      )}
+
+
       {/* Background Gradient */}
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-900/10 blur-[120px] rounded-full pointer-events-none"></div>
 
@@ -62,12 +95,6 @@ export default function Contact() {
                     hello@dayanidhi.dev
                   </a>
               </div>
-              <div className="flex items-center gap-4 text-zinc-300">
-                  <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center border border-white/10">
-                    📍
-                  </div>
-                  <span>Andhra Pradesh, India</span>
-              </div>
            </div>
         </div>
 
@@ -75,8 +102,6 @@ export default function Contact() {
         <div className="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-sm">
             
             <form onSubmit={onSubmit} className="space-y-6">
-                
-                {/* Bot Protection */}
                 <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -85,7 +110,7 @@ export default function Contact() {
                         <input 
                           type="text" 
                           name="name" 
-                          placeholder="John Doe" 
+                          placeholder="Your Name" 
                           required
                           className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all placeholder:text-zinc-700"
                         />
@@ -95,7 +120,7 @@ export default function Contact() {
                         <input 
                           type="email" 
                           name="email" 
-                          placeholder="john@company.com" 
+                          placeholder="you@company.com" 
                           required
                           className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all placeholder:text-zinc-700"
                         />
@@ -132,13 +157,6 @@ export default function Contact() {
                 >
                     {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
-
-                {/* Status Message */}
-                {result && (
-                    <p className={`text-center text-sm font-medium mt-4 ${result.includes("Success") ? "text-green-400" : "text-red-400"}`}>
-                        {result}
-                    </p>
-                )}
             </form>
         </div>
 
