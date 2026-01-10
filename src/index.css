@@ -1,8 +1,27 @@
 @import "tailwindcss";
+:root {
+  /* A softer, more sophisticated black than pure #000000 */
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
 
+html {
+  scroll-behavior: smooth;
+}
 body {
-  background-color: black; /* Force Black */
   margin: 0;
   padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  /* Use a clean, modern sans-serif font like Inter or Helvetica Neue */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection color for a premium feel */
+::selection {
+  background-color: #ffffff;
+  color: #0a0a0a;
 }
