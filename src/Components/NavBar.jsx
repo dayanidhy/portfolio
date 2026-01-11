@@ -75,9 +75,17 @@ export default function NavBar() {
         {/* CTA BUTTON - Scrolls to Contact */}
         <a 
           href="#contact"
-          className="hidden md:block px-6 py-2 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-full hover:bg-purple-500 hover:text-white transition-all duration-300"
+          className="group relative hidden md:inline-flex h-10 items-center justify-center px-6 bg-white overflow-hidden rounded-full transition-colors duration-300 hover:bg-purple-500"
         >
-          Let's Talk
+          {/* 1. ORIGINAL TEXT (Black - Slides UP) */}
+          <span className="absoulute w-full h-full block flex items-center justify-center text-black text-xs font-bold uppercase tracking-widest transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
+            Let's Talk
+          </span>
+
+          {/* 2. NEW TEXT (White - Slides IN from Bottom) */}
+          <span className="absolute w-full h-full flex items-center justify-center text-white text-xs font-bold uppercase tracking-widest transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0">
+            Let's Talk
+          </span>
         </a>
 
         {/* MOBILE HAMBURGER */}
