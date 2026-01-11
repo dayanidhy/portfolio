@@ -54,10 +54,22 @@ export default function NavBar() {
         
         {/* DESKTOP LINKS */}
         <div className="hidden md:flex gap-12 text-sm font-medium tracking-wide">
-          <a href="#work" className="hover:text-purple-400 transition-colors">Work</a>
-          {/* Renamed Notes to Stack to be more relevant */}
-          <a href="#work" className="hover:text-purple-400 transition-colors">Stack</a> 
-          <a href="#about" className="hover:text-purple-400 transition-colors">About</a>
+          <a href="#work" className="group relative h-4 overflow-hidden block">
+            <span className="block transition-transform duration-500 group-hover:-translate-y-full">Work</span>
+            <span className="absolute top-full left-0 block transition-transform duration-500 group-hover:-translate-y-full text-purple-500">Work</span>
+          </a>
+          <a href="#stack" className="group relative h-4 overflow-hidden block">
+            <span className="block transition-transform duration-500 group-hover:-translate-y-full">Stack</span>
+            <span className="absolute top-full left-0 block transition-transform duration-500 group-hover:-translate-y-full text-purple-500">Stack</span>
+          </a>
+          <a href="#about" className="group relative h-4 overflow-hidden block">
+            <span className="block transition-transform duration-500 group-hover:-translate-y-full">About</span>
+            <span className="absolute top-full left-0 block transition-transform duration-500 group-hover:-translate-y-full text-purple-500">About</span>
+          </a>
+          <a href="#contact" className="group relative h-4 overflow-hidden block">
+            <span className="block transition-transform duration-500 group-hover:-translate-y-full">Contact</span>
+            <span className="absolute top-full left-0 block transition-transform duration-500 group-hover:-translate-y-full text-purple-500">Contact</span>
+          </a>
         </div>
 
         {/* CTA BUTTON - Scrolls to Contact */}

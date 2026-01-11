@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');@import "tailwindcss";
 :root {
   /* A softer, more sophisticated black than pure #000000 */
   background-color: #0a0a0a;
@@ -14,10 +14,21 @@ body {
   width: 100%;
   min-height: 100vh;
   /* Use a clean, modern sans-serif font like Inter or Helvetica Neue */
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  /* Apply Space Grotesk here */
+  font-family: 'Space Grotesk', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  background-color: #0a0a0a;
 }
 
 /* Selection color for a premium feel */
